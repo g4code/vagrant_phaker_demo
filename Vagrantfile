@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box     = "ubuntu-precise12042-x64-vbox43"
-  config.vm.box_url = "https://puphpet.s3.amazonaws.com/ubuntu-precise12042-x64-vbox43.box"
+  config.vm.box_url = "https://box.puphpet.com/ubuntu-precise12042-x64-vbox43.box"
 
   config.vm.network "private_network", ip: "192.168.33.11"
 

@@ -2,7 +2,7 @@
 vagrantfile-local:
     vm:
         box: ubuntu-precise12042-x64-vbox43
-        box_url: 'https://puphpet.s3.amazonaws.com/ubuntu-precise12042-x64-vbox43.box'
+        box_url: 'https://box.puphpet.com/ubuntu-precise12042-x64-vbox43.box'
         hostname: null
         network:
             private_network: 192.168.33.11
