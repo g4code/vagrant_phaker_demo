@@ -1,0 +1,115 @@
+---
+vagrantfile-local:
+    vm:
+        box: ubuntu-precise12042-x64-vbox43
+        box_url: 'https://puphpet.s3.amazonaws.com/ubuntu-precise12042-x64-vbox43.box'
+        hostname: null
+        network:
+            private_network: 192.168.33.11
+            forwarded_port:
+                R9FDT2iL5SyP:
+                    host: ''
+                    guest: ''
+        provider:
+            virtualbox:
+                modifyvm:
+                    name: g4-demo-ubuntu
+                    natdnshostresolver1: on
+                    memory: '1024'
+                setextradata:
+                    VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
+        provision:
+            puppet:
+                manifests_path: puppet/manifests
+                options:
+                    - --verbose
+                    - '--hiera_config /vagrant/hiera.yaml'
+                    - '--parser future'
+        synced_folder:
+            Uy0JxyBhkmWX:
+                id: vagrant-root
+                source: ./workspace
+                target: /var/www
+                nfs: 'true'
+        usable_port_range: 2200..2250
+    ssh:
+        host: null
+        port: null
+        private_key_path: null
+        username: vagrant
+        guest_port: null
+        keep_alive: true
+        forward_agent: false
+        forward_x11: false
+        shell: 'bash -l'
+    vagrant:
+        host: ':detect'
+server:
+    packages:
+        - gcc
+        - mc
+        - mutt
+        - zip
+        - unzip
+        - telnet
+        - git-flow
+        - vim
+    dot_files:
+        -
+            bash_aliases: null
+    _prevent_empty: ''
+nginx:
+    vhosts:
+        BYRxXCt88b3o:
+            server_name: dev.phaker.dev
+            www_root: /var/www/phaker_demo
+            listen_port: '80'
+            index_files:
+                - index.html
+                - index.htm
+                - index.php
+            envvars:
+                - 'APP_ENV dejan'
+php:
+    version: '54'
+    composer: '1'
+    modules:
+        php:
+            - cli
+            - intl
+            - mcrypt
+            - common
+            - curl
+            - memcache
+            - memcached
+            - fpm
+        pear: {  }
+        pecl:
+            - pecl_http
+    ini:
+        display_errors: On
+        error_reporting: '-1'
+        session.save_path: /var/lib/php/session
+    timezone: Europe/Belgrade
+xdebug:
+    install: 0
+    settings:
+        xdebug.default_enable: '1'
+        xdebug.remote_autostart: '0'
+        xdebug.remote_connect_back: '1'
+        xdebug.remote_enable: '1'
+        xdebug.remote_handler: dbgp
+        xdebug.remote_port: '9000'
+mysql:
+    root_password: admin123
+    phpmyadmin: 0
+    databases:
+        2j0ecUMcZSZr:
+            grant:
+                - ALL
+            name: nd_demo
+            host: localhost
+            user: nd
+            password: nd123
+            sql_file: /var/www/database/demo.sql
+
